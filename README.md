@@ -20,6 +20,9 @@ Please create issues for feature request and collaboration.
 - [ ] Generate "heat bars" for words like shell-hist does
 - [ ] Split report by file/folder (sort of like `sloc` does for code)
 - [ ] Choose language for stopwords
+- [ ] Format output (e.g. justify counts a la `uniq -c`)
+
+
 
 Idea contributors:
 
