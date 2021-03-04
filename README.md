@@ -28,4 +28,21 @@ Idea contributors:
 
 ## Similar tools
 
-There must be similar tools out there. Can you help me find them?
+**uniq**
+
+A basic version would be
+
+```
+curl -L 'https://github.com/mre/freq/raw/main/README.md' | tr -cs '[:alnum:]' "\n" | grep -vEx 'and|or|for|a|of|to|an|in' | sort | uniq -c | sort
+```
+
+This works, but it's not very extensible by normal users.
+It would also lack most of the features listed above.
+
+**Lucene**
+
+Has all the bells and whistles, but there is no official CLI interface and requires a full Java installation.
+
+** What else?**
+
+There must be more tools out there. Can you help me find them?
