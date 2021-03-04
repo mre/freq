@@ -24,3 +24,7 @@ Idea contributors:
 
 * @jamesmunns
 * Want to see your name here? Create an issue!
+
+## Similar tools
+
+There must be similar tools out there. Can you help me find them?
