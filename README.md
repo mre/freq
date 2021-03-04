@@ -21,12 +21,13 @@ Please create issues for feature request and collaboration.
 - [ ] Split report by file/folder (sort of like `sloc` does for code)
 - [ ] Choose language for stopwords
 - [ ] Format output (e.g. justify counts a la `uniq -c`)
-
-
+- [ ] Interactive mode (shows stats while running)
 
 Idea contributors:
 
 - @jamesmunns
+- @M3t0r
+- @themihel
 - Want to see your name here? Create an issue!
 
 ## Similar tools
@@ -46,6 +47,6 @@ It would also lack most of the features listed above.
 
 Has all the bells and whistles, but there is no official CLI interface and requires a full Java installation.
 
-** What else?**
+**What else?**
 
 There must be more tools out there. Can you help me find them?
