@@ -2,6 +2,8 @@
 
 A commandline tool that counts the number of word occurences in an input.
 
+[![James Munns on Twitter](fixtures/tweet.png)](https://twitter.com/bitshiftmask/status/1367451210987544580)
+
 This is just a placeholder repository for now.
 Please create issues for feature request and collaboration.
 
