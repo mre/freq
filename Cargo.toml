@@ -1,9 +1,19 @@
 [package]
 name = "freq"
 version = "0.1.0"
-authors = ["Matthias Endler <matthias-endler@gmx.net>"]
+license = "Apache-2.0/MIT"
+authors = ["Matthias Endler <matthias@endler.dev>"]
 edition = "2018"
+description = "The missing word frequency analyzer"
+documentation = "https://github.com/mre/freq/blob/master/README.md"
+homepage = "https://github.com/mre/freq"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+keywords = [
+    "word",
+    "frequency",
+    "analyzer",
+    "histogram",
+    "cli",
+]
 
 [dependencies]
