@@ -21,6 +21,7 @@ Please create issues for feature request and collaboration.
 - [ ] Split report by file/folder (sort of like `sloc` does for code)
 - [ ] Choose language for stopwords
 - [ ] Format output (e.g. justify counts a la `uniq -c`)
+- [ ] Calculate TF-IDF score in a multi-file scenario
 
 
 
@@ -52,6 +53,11 @@ Has all the bells and whistles, but there is no official CLI interface and requi
 
 Nice and simple. Doesn't exclude stopwords and no regex support, though.
 https://github.com/juditacs/wordcount
+
+**word-frequency**
+
+Haskell-based approach: Includes features like min length for words, or min occurrences of words in a text.
+https://github.com/cbzehner/word-frequency
 
 **What else?**
 
