@@ -46,6 +46,13 @@ It would also lack most of the features listed above.
 
 Has all the bells and whistles, but there is no official CLI interface and requires a full Java installation.
 
-** What else?**
+**wordcount**
+
+```freqword <tab> freq```
+
+Nice and simple. Doesn't exclude stopwords and no regex support, though.
+https://github.com/juditacs/wordcount
+
+**What else?**
 
 There must be more tools out there. Can you help me find them?
