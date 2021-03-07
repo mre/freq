@@ -9,26 +9,17 @@ struct WordStat {
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     use stopwords::Stopwords;
-    let stop_words_spark: HashSet<_> = stopwords::Spark::stopwords(stopwords::Language::English)
+    let stop_words: HashSet<_> = stopwords::NLTK::stopwords(stopwords::Language::English)
         .unwrap()
         .iter()
         .collect();
-    let _stop_words_nltk: HashSet<_> = stopwords::NLTK::stopwords(stopwords::Language::English)
-        .unwrap()
-        .iter()
-        .collect();
-    let stop_words_sk: HashSet<_> = stopwords::SkLearn::stopwords(stopwords::Language::English)
-        .unwrap()
-        .iter()
-        .collect();
-    let stop_words: HashSet<_> = stop_words_spark.union(&stop_words_sk).collect();
     let mut total_counter = 0u64;
     let mut word_counter = HashMap::new();
     let stdin = std::io::stdin();
     for line in stdin.lock().lines() {
         if let Ok(line) = line {
             for word in line.unicode_words() {
-                if stop_words.contains(&&word) {
+                if stop_words.contains(&word) {
                     continue;
                 }
                 total_counter += 1;
