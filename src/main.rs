@@ -1,5 +1,6 @@
 use std::collections::HashMap;
 use std::io::prelude::*;
+use unicode_segmentation::UnicodeSegmentation;
 
 struct WordStat {
     word: String,
@@ -12,7 +13,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let stdin = std::io::stdin();
     for line in stdin.lock().lines() {
         if let Ok(line) = line {
-            for word in line.split_whitespace() {
+            for word in line.unicode_words() {
                 total_counter += 1;
                 word_counter
                     .entry(word.to_string())
