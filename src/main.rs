@@ -54,6 +54,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             f.word
         );
     }
+    println!("total words = {}", total_counter);
 
     Ok(())
 }
