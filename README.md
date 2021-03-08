@@ -2,7 +2,7 @@
 
 A commandline tool that counts the number of word occurences in an input.
 
-[![James Munns on Twitter](fixtures/tweet.png)](https://twitter.com/bitshiftmask/status/1367451210987544580)
+[![James Munns on Twitter](assets/tweet.png)](https://twitter.com/bitshiftmask/status/1367451210987544580)
 
 This is just a placeholder repository for now.
 Please create issues for feature request and collaboration.
@@ -13,7 +13,6 @@ Please create issues for feature request and collaboration.
 - [ ] Filter stopwords (similar to NLTK's stopwords)
 - [ ] Different output formats (plaintext, JSON)
 - [ ] Performance (SIMD support, async execution)
-- [ ] Usage as library
 - [ ] Recursion support
 - [ ] Allow skipping files
 - [ ] Allow specifying ignored words in a separate file
@@ -23,14 +22,25 @@ Please create issues for feature request and collaboration.
 - [ ] Format output (e.g. justify counts a la `uniq -c`)
 - [ ] Interactive mode (shows stats while running)
 - [ ] Calculate TF-IDF score in a multi-file scenario
-
-
+- [ ] Limit the output to the top N words
+- [ ] Ignore hidden files (begins with `.`)
+- [ ] Minimize number of allocations
+- [ ] No-std support?
+- [ ] Ignore "words" only consisting of special characters, e.g. `///`
+- [ ] Multiple files as inputs
+- [ ] Glob input patterns
+- [ ] If directory is given, walk contents of folder recursively (walker)
+- [ ] Verbose output (show currently analyzed file etc)
+- [ ] Library usage
+- [ ] freq.toml configuration file
+- [ ] https://github.com/jonhoo/evmap
 
 Idea contributors:
 
 - @jamesmunns
 - @M3t0r
 - @themihel
+- @pizzamig
 - Want to see your name here? Create an issue!
 
 ## Similar tools
@@ -52,7 +62,7 @@ Has all the bells and whistles, but there is no official CLI interface and requi
 
 **wordcount**
 
-```freqword <tab> freq```
+`freqword <tab> freq`
 
 Nice and simple. Doesn't exclude stopwords and no regex support, though.
 https://github.com/juditacs/wordcount
