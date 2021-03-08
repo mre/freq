@@ -94,7 +94,7 @@ pub struct Config {
     pub threads: Option<usize>,
 
     /// Exclude words from analysis (supports regex)
-    #[structopt(long)]
+    #[structopt(short, long)]
     #[serde(default)]
     pub exclude: Vec<String>,
 
