@@ -40,7 +40,7 @@ impl Display for Stats {
         for word in sorted.iter() {
             writeln!(
                 f,
-                "{} - {} - {}",
+                "{:.3} - {} - {}",
                 word.stat as f32 / self.total as f32,
                 word.stat,
                 word.word

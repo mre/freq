@@ -43,11 +43,11 @@ impl Client {
 
     pub fn update<T: AsRef<str>>(&mut self, line: T) {
         for word in line.as_ref().split_whitespace() {
-            self.stats.total += 1;
             if self.excludes.excluded(&word) {
                 self.stats.excluded += 1;
                 continue;
             }
+            self.stats.total += 1;
             self.stats
                 .occurrences
                 .entry(word.to_string())
