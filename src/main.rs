@@ -1,5 +1,6 @@
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::io::prelude::*;
+use unicode_segmentation::UnicodeSegmentation;
 
 struct WordStat {
     word: String,
@@ -7,12 +8,20 @@ struct WordStat {
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
+    use stopwords::Stopwords;
+    let stop_words: HashSet<_> = stopwords::NLTK::stopwords(stopwords::Language::English)
+        .unwrap()
+        .iter()
+        .collect();
     let mut total_counter = 0u64;
     let mut word_counter = HashMap::new();
     let stdin = std::io::stdin();
     for line in stdin.lock().lines() {
         if let Ok(line) = line {
-            for word in line.split_whitespace() {
+            for word in line.unicode_words() {
+                if stop_words.contains(&word) {
+                    continue;
+                }
                 total_counter += 1;
                 word_counter
                     .entry(word.to_string())
@@ -36,6 +45,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             f.word
         );
     }
+    println!("total words = {}", total_counter);
 
     Ok(())
 }
