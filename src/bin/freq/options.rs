@@ -3,7 +3,7 @@ use freq::Input;
 use serde::Deserialize;
 use std::str::FromStr;
 use std::{fs, io::ErrorKind, path::PathBuf};
-use structopt::{clap::crate_version, StructOpt};
+use structopt::StructOpt;
 
 #[derive(Debug, Deserialize)]
 pub enum Format {

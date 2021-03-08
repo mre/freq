@@ -74,20 +74,16 @@ mod test {
     // would chuck, he would, as much as he could, and chuck as much wood as a
     // woodchuck would if a woodchuck could chuck wood.
 
-    #[tokio::test]
-    async fn test_basic_input() {
+    #[test]
+    fn test_basic_input() {
         let input = "apple banana lychee apple";
-        let stats = ClientBuilder::default()
-            .build()
-            .unwrap()
-            .count(input)
-            .await
-            .unwrap();
+        let mut client = ClientBuilder::default().build().unwrap();
+        client.update(input);
         let expected = hashmap! {
-            "apple" => 2,
-            "banana" => 1,
-            "lychee" => 1,
+            "apple".to_string() => 2 as usize,
+            "banana".to_string() => 1 as usize,
+            "lychee".to_string() => 1 as usize,
         };
-        assert!(stats.occurrences, expected);
+        assert!(client.stats.occurrences, expected);
     }
 }

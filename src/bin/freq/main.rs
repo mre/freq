@@ -1,9 +1,8 @@
-use anyhow::{anyhow, bail, Context, Result};
+use anyhow::{Context, Result};
 use options::Format;
 use regex::RegexSet;
-use std::{collections::HashMap, io::BufRead};
+use std::{fs, io::BufRead};
 use structopt::StructOpt;
-use tokio::sync::mpsc::{self, Sender};
 
 mod options;
 
@@ -63,7 +62,6 @@ fn fmt(stats: &Stats, format: &Format) -> Result<String> {
 }
 
 async fn run(cfg: &Config, inputs: Vec<Input>) -> Result<i32> {
-
     let exclude = RegexSet::new(&cfg.exclude)?;
     let mut client = ClientBuilder::default().excludes(exclude).build()?;
 
@@ -79,19 +77,15 @@ async fn run(cfg: &Config, inputs: Vec<Input>) -> Result<i32> {
         }
     }
 
-    let out = fmt(&client.stats, &cfg.format)?;
-    println!("{}", out);
-
+    // TODO: Use tokio channel for analyzing multiple files concurrently
     // let (send_req, recv_req) = mpsc::channel(max_concurrency);
     // let (send_resp, mut recv_resp) = mpsc::channel(max_concurrency);
-
     // let sr = send_req.clone();
     // tokio::spawn(async move {
     //     for link in links {
     //         sr.send(link).await.unwrap();
     //     }
     // });
-
     // tokio::spawn(async move {
     //     // Start receiving requests
     //     let clients: Vec<_> = (0..max_concurrency).map(|_| client.clone()).collect();
@@ -99,17 +93,12 @@ async fn run(cfg: &Config, inputs: Vec<Input>) -> Result<i32> {
     //     clients.listen().await;
     // });
 
-    // let occurrences = fmt(&stats, &cfg.format)?;
-    // if let Some(output) = &cfg.output {
-    //     fs::write(output, stats_formatted).context("Cannot write status output to file")?;
-    // } else {
-    //     println!("\n{}", stats_formatted);
-    // }
-
-    // match stats.is_success() {
-    //     true => Ok(ExitCode::Success as i32),
-    //     false => Ok(ExitCode::LinkCheckFailure as i32),
-    // }
+    let stats_formatted = fmt(&client.stats, &cfg.format)?;
+    if let Some(output) = &cfg.output {
+        fs::write(output, stats_formatted).context("Cannot write status output to file")?;
+    } else {
+        println!("\n{}", stats_formatted);
+    }
 
     Ok(ExitCode::Success as i32)
 }
