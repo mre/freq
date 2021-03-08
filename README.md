@@ -31,6 +31,7 @@ Idea contributors:
 - @jamesmunns
 - @M3t0r
 - @themihel
+- @AlexanderThaller
 - Want to see your name here? Create an issue!
 
 ## Similar tools
