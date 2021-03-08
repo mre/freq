@@ -22,6 +22,9 @@ Please create issues for feature request and collaboration.
 - [ ] Choose language for stopwords
 - [ ] Format output (e.g. justify counts a la `uniq -c`)
 - [ ] Interactive mode (shows stats while running)
+- [ ] Calculate TF-IDF score in a multi-file scenario
+
+
 
 Idea contributors:
 
@@ -46,6 +49,18 @@ It would also lack most of the features listed above.
 **Lucene**
 
 Has all the bells and whistles, but there is no official CLI interface and requires a full Java installation.
+
+**wordcount**
+
+```freqword <tab> freq```
+
+Nice and simple. Doesn't exclude stopwords and no regex support, though.
+https://github.com/juditacs/wordcount
+
+**word-frequency**
+
+Haskell-based approach: Includes features like min length for words, or min occurrences of words in a text.
+https://github.com/cbzehner/word-frequency
 
 **What else?**
 
