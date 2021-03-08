@@ -9,7 +9,7 @@ Please create issues for feature request and collaboration.
 
 ## TODO
 
-- [ ] Ignore words ([regex pattern](https://docs.rs/regex/latest/regex/struct.RegexSet.html))
+- [ ] Ignore words ([regex pattern](https://docs.rs/regex/latest/regex/struct.RegexSet.html)) [[issue 5](https://github.com/mre/freq/issues/5)]
 - [ ] Filter stopwords (similar to NLTK's stopwords)
 - [ ] Different output formats (plaintext, JSON)
 - [ ] Performance (SIMD support, async execution)
