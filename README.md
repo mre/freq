@@ -34,14 +34,15 @@ Please create issues for feature request and collaboration.
 - [ ] Verbose output (show currently analyzed file etc)
 - [ ] Library usage
 - [ ] https://github.com/jonhoo/evmap
+- [ ] Automated abstract generation with Luhn's algorithm [Issue #1](https://github.com/mre/freq/issues/1)
 
 Idea contributors:
 
-- @jamesmunns
-- @M3t0r
-- @themihel
-- @AlexanderThaller
-- @pizzamig
+- [@jamesmunns](https://github.com/jamesmunns)
+- [@M3t0r](https://github.com/M3t0r)
+- [@themihel](https://github.com/themihel)
+- [@AlexanderThaller](https://github.com/AlexanderThaller)
+- [@pizzamig](https://github.com/pizzamig)
 - Want to see your name here? Create an issue!
 
 ## Similar tools
