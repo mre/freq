@@ -7,11 +7,12 @@ A commandline tool that counts the number of word occurences in an input.
 This is just a placeholder repository for now.
 Please create issues for feature request and collaboration.
 
-## TODO
+## Features
 
-- [ ] Ignore words ([regex pattern](https://docs.rs/regex/latest/regex/struct.RegexSet.html)) [[issue 5](https://github.com/mre/freq/issues/5)]
+- [x] Ignore words ([regex pattern](https://docs.rs/regex/latest/regex/struct.RegexSet.html)) [[issue 5](https://github.com/mre/freq/issues/5)]
+- [x] Different output formats (plaintext, JSON)
+- [x] freq.toml configuration file
 - [ ] Filter stopwords (similar to NLTK's stopwords)
-- [ ] Different output formats (plaintext, JSON)
 - [ ] Performance (SIMD support, async execution)
 - [ ] Recursion support
 - [ ] Allow skipping files
@@ -32,7 +33,6 @@ Please create issues for feature request and collaboration.
 - [ ] If directory is given, walk contents of folder recursively (walker)
 - [ ] Verbose output (show currently analyzed file etc)
 - [ ] Library usage
-- [ ] freq.toml configuration file
 - [ ] https://github.com/jonhoo/evmap
 
 Idea contributors:

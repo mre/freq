@@ -1,0 +1,5 @@
+# Verbose program output
+verbose = true
+
+# Exclude words from counting (supports regex)
+exclude = ["donut|mango|lychee"]
