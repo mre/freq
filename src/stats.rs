@@ -24,6 +24,12 @@ impl Stats {
             occurrences: HashMap::new(),
         }
     }
+
+    fn freq(&self, word: &WordStat) -> f32 {
+        let f = word.stat as f32 / self.total as f32;
+        // Round number
+        (f * 1000.0).round() / 1000.0
+    }
 }
 
 impl Display for Stats {
@@ -38,13 +44,7 @@ impl Display for Stats {
             .collect();
         sorted.sort_by_cached_key(|x| x.stat);
         for word in sorted.iter() {
-            writeln!(
-                f,
-                "{:.3} - {} - {}",
-                word.stat as f32 / self.total as f32,
-                word.stat,
-                word.word
-            )?;
+            writeln!(f, "{:} - {} - {}", self.freq(&word), word.stat, word.word)?;
         }
         writeln!(f)
     }
