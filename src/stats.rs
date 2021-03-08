@@ -9,9 +9,10 @@ pub struct WordStat {
     pub stat: usize,
 }
 /// The freq statistics
-#[derive(Serialize)]
+#[derive(Debug, Serialize)]
 pub struct Stats {
     pub total: usize,
+    pub excluded: usize,
     pub occurrences: HashMap<String, usize>,
 }
 
@@ -19,6 +20,7 @@ impl Stats {
     pub fn new() -> Self {
         Stats {
             total: 0,
+            excluded: 0,
             occurrences: HashMap::new(),
         }
     }

@@ -1,12 +1,13 @@
-use anyhow::{anyhow, bail, Context, Result};
+use anyhow::Result;
 use derive_builder::Builder;
-use regex::{Regex, RegexSet};
-use std::{convert::TryInto, io::Read};
+use regex::RegexSet;
+use std::io::Read;
 
 use crate::{excludes::Excludes, stats::Stats};
 
-#[derive(Debug, Clone)]
+#[derive(Debug)]
 pub struct Client {
+    pub stats: Stats,
     excludes: Excludes,
 }
 
@@ -30,19 +31,29 @@ impl ClientBuilder {
     /// The build method instantiates the client.
     pub fn build(&mut self) -> Result<Client> {
         let excludes = self.build_excludes();
-
-        Ok(Client { excludes })
+        let stats = Stats::new();
+        Ok(Client { excludes, stats })
     }
 }
 
 impl Client {
     pub async fn count<T: Read>(&self, input: T) -> Result<Stats> {
-        todo!();
-        // for word in input {
-        //     if self.excludes.excluded(&word) {
-        //         continue
-        //     }
-        // }
+        todo!()
+    }
+
+    pub fn update<T: AsRef<str>>(&mut self, line: T) {
+        for word in line.as_ref().split_whitespace() {
+            self.stats.total += 1;
+            if self.excludes.excluded(&word) {
+                self.stats.excluded += 1;
+                continue;
+            }
+            self.stats
+                .occurrences
+                .entry(word.to_string())
+                .and_modify(|e| *e += 1)
+                .or_insert(1);
+        }
     }
 }
 

@@ -1,5 +1,6 @@
 use anyhow::{anyhow, bail, Context, Result};
 use options::Format;
+use regex::RegexSet;
 use std::{collections::HashMap, io::BufRead};
 use structopt::StructOpt;
 use tokio::sync::mpsc::{self, Sender};
@@ -62,11 +63,9 @@ fn fmt(stats: &Stats, format: &Format) -> Result<String> {
 }
 
 async fn run(cfg: &Config, inputs: Vec<Input>) -> Result<i32> {
-    let mut stats = Stats::new();
 
-    // TODO: User builder for configuring options
-    // let exclude = RegexSet::new(&cfg.exclude)?;
-    // let client = ClientBuilder::default().excludes(exclude).build()?;
+    let exclude = RegexSet::new(&cfg.exclude)?;
+    let mut client = ClientBuilder::default().excludes(exclude).build()?;
 
     // TODO: Add support for file input
     // let files = collector::collect_files(&inputs, max_concurrency).await?;
@@ -74,20 +73,13 @@ async fn run(cfg: &Config, inputs: Vec<Input>) -> Result<i32> {
     let stdin = std::io::stdin();
     for line in stdin.lock().lines() {
         if let Ok(line) = line {
-            for word in line.split_whitespace() {
-                stats.total += 1;
-                stats
-                    .occurrences
-                    .entry(word.to_string())
-                    .and_modify(|e| *e += 1)
-                    .or_insert(1);
-            }
+            client.update(line);
         } else {
             break;
         }
     }
 
-    let out = fmt(&stats, &cfg.format)?;
+    let out = fmt(&client.stats, &cfg.format)?;
     println!("{}", out);
 
     // let (send_req, recv_req) = mpsc::channel(max_concurrency);
