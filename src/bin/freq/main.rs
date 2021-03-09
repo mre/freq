@@ -1,6 +1,7 @@
 use anyhow::{Context, Result};
 use options::Format;
 use regex::RegexSet;
+use std::collections::HashSet;
 use std::{fs, io::BufRead};
 use structopt::StructOpt;
 
@@ -37,7 +38,8 @@ fn run_main() -> Result<i32> {
     if let Some(c) = Config::load_from_file(&opts.config_file)? {
         opts.config.merge(c)
     }
-    let cfg = &opts.config;
+    let inputs = opts.inputs();
+    let cfg = opts.config;
 
     let runtime = match cfg.threads {
         Some(threads) => {
@@ -51,7 +53,7 @@ fn run_main() -> Result<i32> {
         None => tokio::runtime::Runtime::new()?,
     };
 
-    runtime.block_on(run(cfg, opts.inputs()))
+    runtime.block_on(run(cfg, inputs))
 }
 
 fn fmt(stats: &Stats, format: &Format) -> Result<String> {
@@ -61,9 +63,21 @@ fn fmt(stats: &Stats, format: &Format) -> Result<String> {
     })
 }
 
-async fn run(cfg: &Config, inputs: Vec<Input>) -> Result<i32> {
-    let exclude = RegexSet::new(&cfg.exclude)?;
-    let mut client = ClientBuilder::default().excludes(exclude).build()?;
+async fn run(cfg: Config, _inputs: Vec<Input>) -> Result<i32> {
+    let exclude = RegexSet::new(cfg.exclude)?;
+
+    let stopwords = if cfg.exclude_stopwords {
+        stop_words::get(stop_words::LANGUAGE::English)
+            .into_iter()
+            .collect::<HashSet<String>>()
+    } else {
+        HashSet::default()
+    };
+
+    let mut client = ClientBuilder::default()
+        .excludes(exclude)
+        .stopwords(stopwords)
+        .build()?;
 
     // TODO: Add support for file input
     // let files = collector::collect_files(&inputs, max_concurrency).await?;

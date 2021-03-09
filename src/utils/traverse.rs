@@ -163,7 +163,7 @@ pub async fn files_stream<T: Read>(inputs: &[Input]) -> Result<HashSet<T>> {
     // Ok(collected_links)
 }
 
-#[cfg(test)]
+/*#[cfg(test)]
 mod test {
     use super::*;
     use std::fs::File;
@@ -196,4 +196,4 @@ mod test {
 
         Ok(())
     }
-}
+}*/

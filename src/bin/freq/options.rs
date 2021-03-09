@@ -117,6 +117,11 @@ pub struct Config {
     #[structopt(short, long, default_value = "string")]
     #[serde(default)]
     pub format: Format,
+
+    /// Exclude stopwords from analysis (using iso and nltk stopwords)
+    #[structopt(long)]
+    #[serde(default)]
+    pub exclude_stopwords: bool,
 }
 
 impl Config {
