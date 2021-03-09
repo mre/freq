@@ -7,6 +7,30 @@ A commandline tool that counts the number of word occurences in an input.
 This is just a placeholder repository for now.
 Please create issues for feature request and collaboration.
 
+## Usage
+
+### Commandline
+
+```sh
+echo "b a n a n a" | freq
+
+0.16666667 - 1 - b
+0.33333334 - 2 - n
+0.5 - 3 - a
+```
+
+### Library
+
+```rust
+use std::error::Error;
+
+fn main() -> Result<(), Box<dyn Error>> {
+    let frequencies = freq::count("fixtures/sample.txt")?;
+    println!("{:?}", frequencies);
+    Ok(())
+}
+```
+
 ## Features
 
 - [x] Ignore words ([regex pattern](https://docs.rs/regex/latest/regex/struct.RegexSet.html)) [[issue 5](https://github.com/mre/freq/issues/5)]
@@ -50,7 +74,7 @@ Idea contributors:
 
 A basic version would be
 
-```
+```sh,ignore
 curl -L 'https://github.com/mre/freq/raw/main/README.md' | tr -cs '[:alnum:]' "\n" | grep -vEx 'and|or|for|a|of|to|an|in' | sort | uniq -c | sort
 ```
 

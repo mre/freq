@@ -30,7 +30,7 @@ mod tests {
     #[test]
     fn test_exclude_regex() {
         let excludes = Excludes {
-            regex: Some(RegexSet::new(&[r"bar", r"^foo$", r"[0-9]+", r"@example.org"]).unwrap()),
+            regex: Some(RegexSet::new(&[r"bar", r"^foo$", r"^[0-9]+$", r"@example.org"]).unwrap()),
             ..Default::default()
         };
 
