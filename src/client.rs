@@ -37,7 +37,7 @@ impl ClientBuilder {
 }
 
 impl Client {
-    pub async fn count<T: Read>(&self, input: T) -> Result<Stats> {
+    pub async fn count<T: Read>(&self, _input: T) -> Result<Stats> {
         todo!()
     }
 
@@ -80,7 +80,6 @@ mod test {
             "banana".to_string() => 1 as usize,
             "lychee".to_string() => 1 as usize,
         };
-        // TODO
-        // assert!(client.stats.occurrences, expected);
+        assert_eq!(client.stats.occurrences, expected);
     }
 }

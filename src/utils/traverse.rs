@@ -1,11 +1,7 @@
-use anyhow::{anyhow, Context, Result};
-use glob::glob_with;
+use anyhow::Result;
 use serde::Serialize;
-use shellexpand::tilde;
+use std::fmt::Display;
 use std::path::PathBuf;
-use std::{collections::HashSet, fmt::Display};
-use std::{io::Read, path::Path};
-use tokio::io::{stdin, AsyncReadExt};
 
 const STDIN: &str = "-";
 
@@ -121,74 +117,71 @@ impl Input {
 // }
 
 /// Return readers for all matches from a slice of inputs
-pub async fn files_stream<T: Read>(inputs: &[Input]) -> Result<HashSet<T>> {
-    todo!();
+// pub async fn files_stream<T: Read>(inputs: &[Input]) -> Result<HashSet<T>> {
+//     todo!();
 
-    // // extract input contents
-    // for input in inputs.iter().cloned() {
-    //     let sender = contents_tx.clone();
+//     // // extract input contents
+//     // for input in inputs.iter().cloned() {
+//     //     let sender = contents_tx.clone();
 
-    //     tokio::spawn(async move {
-    //         let contents = input.get_contents(None, skip_missing_inputs).await;
-    //         sender.send(contents).await
-    //     });
-    // }
+//     //     tokio::spawn(async move {
+//     //         let contents = input.get_contents(None, skip_missing_inputs).await;
+//     //         sender.send(contents).await
+//     //     });
+//     // }
 
-    // // receiver will get None once all tasks are done
-    // drop(contents_tx);
+//     // // receiver will get None once all tasks are done
+//     // drop(contents_tx);
 
-    // // extract links from input contents
-    // let mut extract_link_handles = vec![];
+//     // // extract links from input contents
+//     // let mut extract_link_handles = vec![];
 
-    // while let Some(result) = contents_rx.recv().await {
-    //     for input_content in result? {
-    //         let base_url = base_url.clone();
-    //         let handle =
-    //             tokio::task::spawn_blocking(move || extract_links(&input_content, base_url));
-    //         extract_link_handles.push(handle);
-    //     }
-    // }
+//     // while let Some(result) = contents_rx.recv().await {
+//     //     for input_content in result? {
+//     //         let base_url = base_url.clone();
+//     //         let handle =
+//     //             tokio::task::spawn_blocking(move || extract_links(&input_content, base_url));
+//     //         extract_link_handles.push(handle);
+//     //     }
+//     // }
 
-    // // Note: we could dispatch links to be checked as soon as we get them,
-    // //       instead of building a HashSet with all links.
-    // //       This optimization would speed up cases where there's
-    // //       a lot of inputs and/or the inputs are large (e.g. big files).
-    // let mut collected_links: HashSet<Request> = HashSet::new();
+//     // // Note: we could dispatch links to be checked as soon as we get them,
+//     // //       instead of building a HashSet with all links.
+//     // //       This optimization would speed up cases where there's
+//     // //       a lot of inputs and/or the inputs are large (e.g. big files).
+//     // let mut collected_links: HashSet<Request> = HashSet::new();
 
-    // for handle in extract_link_handles {
-    //     let links = handle.await?;
-    //     collected_links.extend(links);
-    // }
+//     // for handle in extract_link_handles {
+//     //     let links = handle.await?;
+//     //     collected_links.extend(links);
+//     // }
 
-    // Ok(collected_links)
-}
+//     // Ok(collected_links)
+// }
 
 #[cfg(test)]
 mod test {
     use super::*;
-    use std::fs::File;
-    use std::io::Write;
-    use std::str::FromStr;
 
     #[tokio::test]
     async fn test_collect_links() -> Result<()> {
-        let dir = tempfile::tempdir()?;
-        let file_path = dir.path().join("f");
-        let file_glob_1_path = dir.path().join("glob-1");
-        let file_glob_2_path = dir.path().join("glob-2");
+        // let dir = tempfile::tempdir()?;
+        // let file_path = dir.path().join("f");
+        // let file_glob_1_path = dir.path().join("glob-1");
+        // let file_glob_2_path = dir.path().join("glob-2");
 
-        let mut file = File::create(&file_path)?;
-        let mut file_glob_1 = File::create(file_glob_1_path)?;
-        let mut file_glob_2 = File::create(file_glob_2_path)?;
+        // let mut file = File::create(&file_path)?;
+        // let mut file_glob_1 = File::create(file_glob_1_path)?;
+        // let mut file_glob_2 = File::create(file_glob_2_path)?;
 
-        let inputs = vec![
-            // Input::String(TEST_STRING.to_string()),
-            Input::FsPath(file_path),
-            Input::FsGlob {
-                pattern: dir.path().join("glob*").to_str().unwrap().to_string(),
-                ignore_case: true,
-            },
-        ];
+        // let inputs = vec![
+        //     // Input::String(TEST_STRING.to_string()),
+        //     Input::FsPath(file_path),
+        //     Input::FsGlob {
+        //         pattern: dir.path().join("glob*").to_str().unwrap().to_string(),
+        //         ignore_case: true,
+        //     },
+        // ];
 
         // TODO
         // let found_files: HashSet<Box<Read>> = files_stream(&inputs).await?.collect();

@@ -1,6 +1,6 @@
 # freq
 
-A commandline tool that counts the number of word occurences in an input.
+A commandline tool that counts the number of word occurrences in an input.
 
 [![James Munns on Twitter](assets/tweet.png)](https://twitter.com/bitshiftmask/status/1367451210987544580)
 
@@ -43,11 +43,11 @@ fn main() -> Result<(), Box<dyn Error>> {
 - [ ] Allow specifying ignored words in a separate file
 - [ ] Generate "heat bars" for words like shell-hist does
 - [ ] Split report by file/folder (sort of like `sloc` does for code)
-- [ ] Choose language for stopwords
+- [ ] Choose language for stopwords (`--lang fr`)
 - [ ] Format output (e.g. justify counts a la `uniq -c`)
-- [ ] Interactive mode (shows stats while running)
+- [ ] Interactive mode (shows stats while running) (`--interactive`)
 - [ ] Calculate TF-IDF score in a multi-file scenario
-- [ ] Limit the output to the top N words
+- [ ] Limit the output to the top N words (e.g. `--top 3`)
 - [ ] Ignore hidden files (begins with `.`)
 - [ ] Minimize number of allocations
 - [ ] No-std support?

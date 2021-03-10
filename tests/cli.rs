@@ -1,10 +1,8 @@
 #[cfg(test)]
 mod cli {
-    use anyhow::Result;
     use assert_cmd::Command;
     use predicates::str::contains;
-    use std::fs::{self, File};
-    use std::io::Write;
+    use std::fs;
     use std::path::{Path, PathBuf};
 
     fn main_command() -> Command {

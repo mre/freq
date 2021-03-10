@@ -61,7 +61,7 @@ fn fmt(stats: &Stats, format: &Format) -> Result<String> {
     })
 }
 
-async fn run(cfg: &Config, inputs: Vec<Input>) -> Result<i32> {
+async fn run(cfg: &Config, _inputs: Vec<Input>) -> Result<i32> {
     let exclude = RegexSet::new(&cfg.exclude)?;
     let mut client = ClientBuilder::default().excludes(exclude).build()?;
 
