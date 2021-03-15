@@ -159,7 +159,7 @@ impl Input {
 //     // Ok(collected_links)
 // }
 
-#[cfg(test)]
+/*#[cfg(test)]
 mod test {
     use super::*;
 
@@ -190,4 +190,4 @@ mod test {
 
         Ok(())
     }
-}
+}*/
