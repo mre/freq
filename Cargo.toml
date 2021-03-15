@@ -41,3 +41,5 @@ version = "1.2.0"
 
 [dev-dependencies]
 doc-comment = "0.3.3"
+predicates = "1.0.7"
+assert_cmd = "1.0.3"

@@ -6,9 +6,8 @@
 //! ```
 //! use std::error::Error;
 //!
-//! #[tokio::main]
-//! async fn main() -> Result<(), Box<dyn Error>> {
-//!   let frequencies = freq::count("/path/to/input").await?;
+//! fn main() -> Result<(), Box<dyn Error>> {
+//!   let frequencies = freq::count("fixtures/sample.txt")?;
 //!   println!("{:?}", frequencies);
 //!   Ok(())
 //! }
@@ -19,13 +18,12 @@
 //! configure and run your own frequency counter and grants full flexibility:
 //!
 //! ```
-//! use freq::{ClientBuilder, Status};
+//! use freq::ClientBuilder;
 //! use std::error::Error;
 //!
-//! #[tokio::main]
-//! async fn main() -> Result<(), Box<dyn Error>> {
+//! fn main() -> Result<(), Box<dyn Error>> {
 //!   let client = ClientBuilder::default().build()?;
-//!   let frequencies = client.count("/path/to/input").await?;
+//!   let frequencies = client.count("fixtures/sample.txt")?;
 //!   println!("{:?}", frequencies);
 //!   Ok(())
 //! }
