@@ -71,6 +71,11 @@ Idea contributors:
 
 ## Similar tools
 
+**tot-up**
+
+Similar tool written in Rust with nice graphical output
+https://github.com/payload/tot-up
+
 **uniq**
 
 A basic version would be
