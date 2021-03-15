@@ -36,7 +36,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 - [x] Ignore words ([regex pattern](https://docs.rs/regex/latest/regex/struct.RegexSet.html)) [[issue 5](https://github.com/mre/freq/issues/5)]
 - [x] Different output formats (plaintext, JSON)
 - [x] freq.toml configuration file
-- [ ] Filter stopwords (similar to NLTK's stopwords)
+- [x] Filter stopwords (similar to NLTK's stopwords)
 - [ ] Performance (SIMD support, async execution)
 - [ ] Recursion support
 - [ ] Allow skipping files
